@@ -38,36 +38,35 @@ recognition.onresult = function (event) {
     noteTextarea.val(noteContent);
   }
 };
-
-
-$("#start-record-btn").bind('touchstart', function () {
-  if (noteContent.length) {
-    noteContent += ' ';
-  }
-  recognition.start();
-}).bind('touchend', function () {
-  recognition.stop();
-});
-
 /*-----------------------------
       App buttons and input 
 ------------------------------*/
 
-// $('#start-record-btn').mousedown(function (e) {
-//   if (noteContent.length) {
-//     noteContent += ' ';
-//   }
-//   recognition.start();
-// }).mouseup(function () {
-//   recognition.stop();
-// });
+if ($(window).width() <= 991) {
+  $("#start-record-btn").bind('touchstart', function () {
+    if (noteContent.length) {
+      noteContent += ' ';
+    }
+    recognition.start();
+  }).bind('touchend', function () {
+    recognition.stop();
+  });
+} else {
+  $('#start-record-btn').mousedown(function (e) {
+    if (noteContent.length) {
+      noteContent += ' ';
+    }
+    recognition.start();
+  }).mouseup(function () {
+    recognition.stop();
+  });
+}
+
+
+
 
 
 // Sync the text inside the text area with the noteContent variable.
 noteTextarea.on('input', function () {
   noteContent = $(this).val();
 })
-
-// $('#start-record-btn').on("press", function () {
-//   recognition.start();
-// })
