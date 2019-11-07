@@ -55,8 +55,14 @@ $('#start-record-btn').mousedown(function (e) {
   recognition.stop();
 });
 
-
-
+$("#target").keydown(function () {
+  if (noteContent.length) {
+    noteContent += ' ';
+  }
+  recognition.start();
+}).keyup(function () {
+  recognition.stop();
+});
 
 // Sync the text inside the text area with the noteContent variable.
 noteTextarea.on('input', function () {
